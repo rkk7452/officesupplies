@@ -9,9 +9,59 @@ Stapler class
 
 public class Stapler
 {
+    //initialize variables
+    private int staples;
+    private boolean jammed;
     
-    
+    /**
+     * Overloaded Constructor for an empty stapler
+     */
+    public Stapler()
+    {
+        staples = 0;
+        jammed = false;
+    }
 
+    /**
+     * Overloaded Constructor for an empty stapler
+     * @param initStaples the amount of staples initially loaded into the stapler
+     */
+    public Stapler(int initStaples)
+    {
+        staples = initStaples;
+        jammed = false;
+    }
 
+    /**
+     * The getStaples() method returns the current number of staples
+     * @return the amount of staples remaining in the stapler
+     */
+    public int getStaples()
+    {
+        return staples;
+    }
 
+    /**
+     * The getJammed() method returns the current number of staples
+     * @return whether the stapler is jammed
+     */
+    public boolean getJammed()
+    {
+        return jammed;
+    }
+
+    /**
+     * The staple() method uses up one of the staples if there is at least one staple available
+     */
+    public void staple()
+    {
+        if (staples>0)
+        {
+            staples--;
+        }
+        else
+        {
+            System.out.println("Out of staples! Time to refill!")
+        }
+    }
 }

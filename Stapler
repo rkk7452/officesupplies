@@ -12,6 +12,7 @@ public class Stapler
     //initialize variables
     private int staples;
     private boolean jammed;
+    final int CHANCEOFJAM;
     
     /**
      * Overloaded Constructor for an empty stapler
@@ -55,13 +56,27 @@ public class Stapler
      */
     public void staple()
     {
-        if (staples>0)
+        if (!jammed)
         {
-            staples--;
+            int randJam = (int) (Math.random()*CHANCEOFJAM);//1 in CHANCEOFJAM chance of getting jammed
+            if (randJam==0)
+            {
+                jammed = true;
+                break;
+            }
+            else{
+                if (staples>0)
+                {
+                    staples--;
+                }
+                else
+                {
+                    System.out.println("Out of staples! Time to refill!")
+                }
+            }
         }
-        else
-        {
-            System.out.println("Out of staples! Time to refill!")
+        else{
+            System.out.println("Jammed...could not staple")
         }
     }
 }

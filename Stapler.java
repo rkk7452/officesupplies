@@ -21,6 +21,7 @@ public class Stapler
     {
         staples = 0;
         jammed = false;
+        CHANCEOFJAM = 5;
     }
 
     /**
@@ -31,6 +32,7 @@ public class Stapler
     {
         staples = initStaples;
         jammed = false;
+        CHANCEOFJAM = 5;
     }
 
     /**
@@ -43,7 +45,7 @@ public class Stapler
     }
 
     /**
-     * The getJammed() method returns the current number of staples
+     * The getJammed() method whether the stapler is jammed
      * @return whether the stapler is jammed
      */
     public boolean getJammed()
@@ -56,27 +58,27 @@ public class Stapler
      */
     public void staple()
     {
-        if (!jammed)
+        if (staples>0)
         {
-            int randJam = (int) (Math.random()*CHANCEOFJAM);//1 in CHANCEOFJAM chance of getting jammed
-            if (randJam==0)
+            if (!jammed)
             {
-                jammed = true;
-                break;
-            }
-            else{
-                if (staples>0)
+                int randJam = (int) (Math.random()*CHANCEOFJAM);//1 in CHANCEOFJAM chance of getting jammed
+                if (randJam==0)
                 {
+                    jammed = true;
+                }
+                else{
                     staples--;
                 }
-                else
-                {
-                    System.out.println("Out of staples! Time to refill!")
-                }
+            }
+            else{
+                System.out.println("Jammed...could not staple");
             }
         }
-        else{
-            System.out.println("Jammed...could not staple")
+        else
+        {
+            System.out.println("Out of staples! Time to refill!");
         }
+        
     }
 }

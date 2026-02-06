@@ -17,23 +17,24 @@ public class Stapler
     /**
      * Overloaded Constructor for an empty stapler
      */
-    public Stapler()
+    public Stapler(int jamChance)
     {
         staples = 0;
         jammed = false;
-        CHANCEOFJAM = 5;
+        CHANCEOFJAM = jamChance;
     }
 
     /**
-     * Overloaded Constructor for an empty stapler
+     * Overloaded Constructor for a stapler with a custom number of staples
      * @param initStaples the amount of staples initially loaded into the stapler
      */
-    public Stapler(int initStaples)
+    public Stapler(int initStaples, int jamChance)
     {
         staples = initStaples;
         jammed = false;
-        CHANCEOFJAM = 5;
+        CHANCEOFJAM = jamChance;
     }
+    
 
     /**
      * The getStaples() method returns the current number of staples

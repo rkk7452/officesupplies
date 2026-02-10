@@ -16,17 +16,27 @@ public class Printer {
         stapleCount = 20;
     }
 
-    public void print() {
+    public void print(int pages, boolean doubleSided) {
         if (inkLevel <= 0) {
             System.out.println("Cannot print: Ink is empty.");
         } else if (paperCount <= 0) {
             System.out.println("Cannot print: Out of paper.");
-        } else if (stapleCount <= 0) {
+        } else if ((stapleCount <= 0&&pages>1&&!doubleSided)||(stapleCount <= 0&&pages>2&&doubleSided)) {
             System.out.println("Cannot print: No staples left.");
         } else {
-            inkLevel -= 5;
-            paperCount--;
-            stapleCount--;
+            inkLevel -= pages*5;
+            if (doubleSided)
+            {
+                paperCount-=(int) pages/2 + pages%2;
+            }
+            else
+            {
+                paperCount -= pages;
+            }
+            if ((pages>1&&!doubleSided)||(pages>2&&doubleSided))
+            {
+                stapleCount--;
+            }
             System.out.println("Printing... Done!");
         }
     }
@@ -44,5 +54,19 @@ public class Printer {
     public void refillStaples() {
         stapleCount = 20;
         System.out.println("Staples refilled.");
+    }
+    public int getInk()
+    {
+        return inkLevel;
+    }
+
+    public int getStaples()
+    {
+        return stapleCount;
+    }
+
+    public int getPaper()
+    {
+        return paperCount;
     }
 }

@@ -66,10 +66,10 @@ public class OfficeSuppliesTester {
             
         //test the alarmClock
         System.out.println();
-        System.out.println("Testing Alarm Clock...\nCreating new alarm clock...")
+        System.out.println("Testing Alarm Clock...\nCreating new alarm clock...");
         alarmClock myAlarm = new alarmClock();
         myAlarm.setAlarm(15,32);
-        
+
         
     }
 }

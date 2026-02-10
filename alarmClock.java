@@ -82,6 +82,6 @@ public class alarmClock{
 
     public String toString()
     {
-        
+        return (hours+":"+minutes+":"+seconds+". Battery Dead:"+batteryDead+". timer seconds:"+timerSeconds+". stopwatch seconds:"+stopwatchSeconds);
     }
 }

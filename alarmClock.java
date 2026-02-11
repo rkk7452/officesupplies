@@ -1,5 +1,5 @@
 /**
-alarmClock class
+AlarmClock class
 @author Ryan Kim
 @author Conner Wang
 @version 2026.2.4
@@ -8,7 +8,7 @@ alarmClock class
 
 
 
-public class alarmClock{
+public class alarmClock {
     private int hours;
     private int minutes;
     private int seconds;
@@ -18,11 +18,9 @@ public class alarmClock{
     private int stopwatchSeconds;
     private boolean batteryDead;
 
-    private int startTime;
-    private int timeSinceStart;
+    private long startTime;
 
-    public alarmClock()
-    {
+    public alarmClock() {
         hours = 0;
         minutes = 0;
         seconds = 0;
@@ -31,71 +29,61 @@ public class alarmClock{
         timerSeconds = 0;
         stopwatchSeconds = 0;
         batteryDead = false;
-        
+
         startTime = System.currentTimeMillis();
     }
-
-    public void setTime(int h, int m, int s)
-    {
-        if (!batteryDead)
-        {
+    public void setTime(int h, int m, int s) {
+        if (!batteryDead) {
             hours = h;
             minutes = m;
             seconds = s;
         }
     }
 
-    private int getMillisPassed()
-    {
-        return System.currentTimeMillis()-startTime;
+    private long getMillisPassed() {
+        return System.currentTimeMillis() - startTime;
     }
 
-    public void setTimer(int seconds)
-    {
-        if (!batteryDead)
-        {
+    public void setTimer(int seconds) {
+        if (!batteryDead) {
             timerSeconds = seconds;
         }
     }
 
-    public void setAlarm(int h, int m)
-    {
-        if (!batteryDead)
-        {
+    public void setAlarm(int h, int m) {
+        if (!batteryDead) {
             alarmHours = h;
             alarmMinutes = m;
         }
     }
 
-    public void setStopWatch()
-    {
-        if (!batteryDead)
-        {
+    public void setStopWatch() {
+        if (!batteryDead) {
             stopwatchSeconds = 0;
         }
     }
 
-    public boolean isBatteryDead()
-    {
+    public boolean isBatteryDead() {
         return batteryDead;
     }
 
-    public void replaceBattery()
-    {
+    public void replaceBattery() {
         batteryDead = false;
+        startTime = System.currentTimeMillis();
     }
 
-    public void drainBattery()
-    {
+    public void drainBattery() {
         batteryDead = true;
     }
-    public int getTime()
-    {
-        return(hours*3600+minutes*60+seconds);
+
+    public int getTime() {
+        return hours * 3600 + minutes * 60 + seconds;
     }
 
-    public String toString()
-    {
-        return (hours+":"+minutes+":"+seconds+". Battery Dead:"+batteryDead+". timer seconds:"+timerSeconds+". stopwatch seconds:"+stopwatchSeconds);
+    public String toString() {
+        return hours + ":" + minutes + ":" + seconds
+                + " | Battery Dead: " + batteryDead
+                + " | Timer Seconds: " + timerSeconds
+                + " | Stopwatch Seconds: " + stopwatchSeconds;
     }
 }

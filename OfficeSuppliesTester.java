@@ -28,6 +28,7 @@ public class OfficeSuppliesTester {
             if (badStapler.getStaples()==staplesRemaining)
             {
                 System.out.println("Passed. Didn't staple when jammed.");
+
             }
             else
             {
@@ -80,7 +81,66 @@ public class OfficeSuppliesTester {
         else{
             System.out.println("Setting time failed.");
         }
-        
+
+        myAlarm.setAlarm(6, 30);
+        myAlarm.setTimer(120);
+        myAlarm.setStopWatch();
+
+        System.out.println("Alarm Clock Info:");
+        System.out.println(myAlarm);
+
+        // Battery test
+        myAlarm.drainBattery();
+        if (myAlarm.isBatteryDead()) {
+            System.out.println("Battery drain PASSED");
+        } else {
+            System.out.println("Battery drain FAILED");
+        }
+
+        myAlarm.replaceBattery();
+        if (!myAlarm.isBatteryDead()) {
+            System.out.println("Battery replace PASSED");
+        } else {
+            System.out.println("Battery replace FAILED");
+        }
+
+        System.out.println();
+
+        // TESTING PRINTER
+        System.out.println("=== TESTING PRINTER ===");
+
+        Printer printer = new Printer();
+
+        System.out.println("Initial Ink: " + printer.getInk());
+        System.out.println("Initial Paper: " + printer.getPaper());
+        System.out.println("Initial Staples: " + printer.getStaples());
+
+        // Test single-sided print
+        printer.print(5, false);
+        System.out.println("After printing 5 pages:");
+        System.out.println("Ink: " + printer.getInk());
+        System.out.println("Paper: " + printer.getPaper());
+        System.out.println("Staples: " + printer.getStaples());
+
+        // Test double-sided print
+        printer.print(4, true);
+        System.out.println("After printing 4 double-sided pages:");
+        System.out.println("Ink: " + printer.getInk());
+        System.out.println("Paper: " + printer.getPaper());
+        System.out.println("Staples: " + printer.getStaples());
+
+        // Drain supplies
+        printer.print(50, false);
+
+        // Refill tests
+        printer.refillInk();
+        printer.refillPaper();
+        printer.refillStaples();
+
+        System.out.println("After refilling:");
+        System.out.println("Ink: " + printer.getInk());
+        System.out.println("Paper: " + printer.getPaper());
+        System.out.println("Staples: " + printer.getStaples());
+    }
 
     }
-}

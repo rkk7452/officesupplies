@@ -49,7 +49,12 @@ public class alarmClock {
             timerSeconds = seconds;
         }
     }
-
+    public String runTimer(int seconds)
+    {
+        Threat.sleep(seconds*1000);
+        return ("Timer is over");
+    }
+    
     public void setAlarm(int h, int m) {
         if (!batteryDead) {
             alarmHours = h;

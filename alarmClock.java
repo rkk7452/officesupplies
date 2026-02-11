@@ -18,6 +18,9 @@ public class alarmClock{
     private int stopwatchSeconds;
     private boolean batteryDead;
 
+    private int startTime;
+    private int timeSinceStart;
+
     public alarmClock()
     {
         hours = 0;
@@ -28,6 +31,8 @@ public class alarmClock{
         timerSeconds = 0;
         stopwatchSeconds = 0;
         batteryDead = false;
+        
+        startTime = System.currentTimeMillis();
     }
 
     public void setTime(int h, int m, int s)
@@ -38,6 +43,11 @@ public class alarmClock{
             minutes = m;
             seconds = s;
         }
+    }
+
+    private int getMillisPassed()
+    {
+        return System.currentTimeMillis()-startTime;
     }
 
     public void setTimer(int seconds)

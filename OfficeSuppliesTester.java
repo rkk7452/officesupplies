@@ -69,6 +69,8 @@ public class OfficeSuppliesTester {
         System.out.println();
         System.out.println("Testing Alarm Clock...\nCreating new alarm clock...");
         alarmClock myAlarm = new alarmClock();
+
+        //testing the setTime()
         System.out.println("Setting the time to 3:32 pm...");
         myAlarm.setTime(15,32,0);
         if (myAlarm.getTime()==55920)
@@ -79,5 +81,6 @@ public class OfficeSuppliesTester {
             System.out.println("Setting time failed.");
         }
         
+
     }
 }

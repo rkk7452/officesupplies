@@ -57,19 +57,27 @@ public class OfficeSuppliesTester {
             System.out.println();
 
             //test Stapler class refill method
+            System.out.println("Testing a small Stapler to run out of staples");
             Stapler smallStapler = new Stapler(5,1000);
             while(smallStapler.getStaples()>0)
             {
                 smallStapler.staple();
             }
-            System.out.println("staples remaining: "+smallStapler.getStaples());
+            System.out.println("Small stapler's staples remaining: "+smallStapler.getStaples());
             
         //test the alarmClock
         System.out.println();
         System.out.println("Testing Alarm Clock...\nCreating new alarm clock...");
         alarmClock myAlarm = new alarmClock();
-        myAlarm.setAlarm(15,32);
-
+        System.out.println("Setting the time to 3:32 pm...");
+        myAlarm.setTime(15,32,0);
+        if (myAlarm.getTime()==55920)
+        {
+            System.out.println("Passed.");
+        }
+        else{
+            System.out.println("Setting time failed.");
+        }
         
     }
 }

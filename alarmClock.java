@@ -79,6 +79,10 @@ public class alarmClock{
     {
         batteryDead = true;
     }
+    public int getTime()
+    {
+        return(hours*3600+minutes*60+seconds);
+    }
 
     public String toString()
     {

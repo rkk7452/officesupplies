@@ -41,7 +41,7 @@ public class alarmClock {
     }
 
     private long getMillisPassed() {
-        return System.currentTimeMillis() - startTime;
+        return (System.currentTimeMillis() - startTime);
     }
 
     public void setTimer(int seconds) {

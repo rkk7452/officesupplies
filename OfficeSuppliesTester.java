@@ -4,6 +4,8 @@ public class OfficeSuppliesTester {
     {
         //Testing the Stapler
         
+        // TESTING Stapler
+        System.out.println("=== TESTING Stapler ===");
             //test the stapler class with a bad stapler
             System.out.println("Constructing a bad Stapler with a 1 in 2 chance of jamming.");
             Stapler badStapler = new Stapler(50, 2);
@@ -66,81 +68,78 @@ public class OfficeSuppliesTester {
             }
             System.out.println("Small stapler's staples remaining: "+smallStapler.getStaples());
             
-        //test the alarmClock
-        System.out.println();
-        System.out.println("Testing Alarm Clock...\nCreating new alarm clock...");
+        
+        // TESTING Alarm Clock
+        System.out.println("\n=== TESTING Alarm Clock ===");
         alarmClock myAlarm = new alarmClock();
 
-        //testing the setTime()
-        System.out.println("Setting the time to 3:32 pm...");
-        myAlarm.setTime(15,32,0);
-        if (myAlarm.getTime()==55920)
-        {
-            System.out.println("Passed.");
-        }
-        else{
-            System.out.println("Setting time failed.");
-        }
+            //testing the setTime()
+            System.out.println("Setting the time to 3:32 pm...");
+            myAlarm.setTime(15,32,0);
+            if (myAlarm.getTime()==55920)
+            {
+                System.out.println("Passed.");
+            }
+            else{
+                System.out.println("Setting time failed.");
+            }
 
-        myAlarm.setAlarm(6, 30);
-        myAlarm.setTimer(120);
-        myAlarm.setStopWatch();
+            myAlarm.setAlarm(6, 30);
+            myAlarm.setTimer(120);
+            myAlarm.setStopWatch();
 
-        System.out.println("Alarm Clock Info:");
-        System.out.println(myAlarm);
+            System.out.println("Alarm Clock Info:");
+            System.out.println(myAlarm);
 
-        // Battery test
-        myAlarm.drainBattery();
-        if (myAlarm.isBatteryDead()) {
-            System.out.println("Battery drain PASSED");
-        } else {
-            System.out.println("Battery drain FAILED");
-        }
+            // Battery test
+            myAlarm.drainBattery();
+            if (myAlarm.isBatteryDead()) {
+                System.out.println("Battery drain PASSED");
+            } else {
+                System.out.println("Battery drain FAILED");
+            }
 
-        myAlarm.replaceBattery();
-        if (!myAlarm.isBatteryDead()) {
-            System.out.println("Battery replace PASSED");
-        } else {
-            System.out.println("Battery replace FAILED");
-        }
-
-        System.out.println();
+            myAlarm.replaceBattery();
+            if (!myAlarm.isBatteryDead()) {
+                System.out.println("Battery replace PASSED");
+            } else {
+                System.out.println("Battery replace FAILED");
+            }
 
         // TESTING PRINTER
-        System.out.println("=== TESTING PRINTER ===");
-
+        System.out.println("\n=== TESTING PRINTER ===");
         Printer printer = new Printer();
 
-        System.out.println("Initial Ink: " + printer.getInk());
-        System.out.println("Initial Paper: " + printer.getPaper());
-        System.out.println("Initial Staples: " + printer.getStaples());
+            System.out.println("Initial Ink: " + printer.getInk());
+            System.out.println("Initial Paper: " + printer.getPaper());
+            System.out.println("Initial Staples: " + printer.getStaples());
 
-        // Test single-sided print
-        printer.print(5, false);
-        System.out.println("After printing 5 pages:");
-        System.out.println("Ink: " + printer.getInk());
-        System.out.println("Paper: " + printer.getPaper());
-        System.out.println("Staples: " + printer.getStaples());
+            // Test single-sided print
+            printer.print(5, false);
+            System.out.println("After printing 5 pages:");
+            System.out.println("Ink: " + printer.getInk());
+            System.out.println("Paper: " + printer.getPaper());
+            System.out.println("Staples: " + printer.getStaples());
 
-        // Test double-sided print
-        printer.print(4, true);
-        System.out.println("After printing 4 double-sided pages:");
-        System.out.println("Ink: " + printer.getInk());
-        System.out.println("Paper: " + printer.getPaper());
-        System.out.println("Staples: " + printer.getStaples());
+            // Test double-sided print
+            printer.print(4, true);
+            System.out.println("After printing 4 double-sided pages:");
+            System.out.println("Ink: " + printer.getInk());
+            System.out.println("Paper: " + printer.getPaper());
+            System.out.println("Staples: " + printer.getStaples());
 
-        // Drain supplies
-        printer.print(50, false);
+            // Drain supplies
+            printer.print(50, false);
 
-        // Refill tests
-        printer.refillInk();
-        printer.refillPaper();
-        printer.refillStaples();
+            // Refill tests
+            printer.refillInk();
+            printer.refillPaper();
+            printer.refillStaples();
 
-        System.out.println("After refilling:");
-        System.out.println("Ink: " + printer.getInk());
-        System.out.println("Paper: " + printer.getPaper());
-        System.out.println("Staples: " + printer.getStaples());
+            System.out.println("After refilling:");
+            System.out.println("Ink: " + printer.getInk());
+            System.out.println("Paper: " + printer.getPaper());
+            System.out.println("Staples: " + printer.getStaples());
     }
 
     }

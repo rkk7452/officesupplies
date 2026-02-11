@@ -106,6 +106,9 @@ public class OfficeSuppliesTester {
                 System.out.println("Battery replace FAILED");
             }
 
+            System.out.println("Testing 5 sec timer...");
+            System.out.println(myAlarm.runTimer(5));
+
         // TESTING PRINTER
         System.out.println("\n=== TESTING PRINTER ===");
         Printer printer = new Printer();

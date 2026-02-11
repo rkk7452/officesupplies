@@ -16,6 +16,11 @@ public class Printer {
         stapleCount = 20;
     }
 
+    /**
+     * The print() method uses up paper, staples, and ink to 'print'
+     * @param pages the number of pages being printed
+     * @param doubleSided whether or not the print job should be double sided
+     */
     public void print(int pages, boolean doubleSided) {
         if (inkLevel <= 0) {
             System.out.println("Cannot print: Ink is empty.");
@@ -41,30 +46,52 @@ public class Printer {
         }
     }
 
+    /**
+     * The refillInk() method resets the inkLevel to max capacity
+     */
     public void refillInk() {
         inkLevel = 100;
         System.out.println("Ink refilled.");
     }
 
+    /**
+     * The refillPaper() method resets the papercount to max capacity
+     */
     public void refillPaper() {
         paperCount = 50;
         System.out.println("Paper refilled.");
     }
 
+    /**
+     * The refillStaples() method resets the stapleCount to max capacity
+     */
     public void refillStaples() {
         stapleCount = 20;
         System.out.println("Staples refilled.");
     }
+
+    /**
+     * The getInk() method returns the current ink level
+     * @return the current ink level
+     */
     public int getInk()
     {
         return inkLevel;
     }
 
+    /**
+     * The getStaples() method returns the current ink level
+     * @return the current staple count
+     */
     public int getStaples()
     {
         return stapleCount;
     }
 
+    /**
+     * The getPaper() method returns the current ink level
+     * @return the current paper count
+     */
     public int getPaper()
     {
         return paperCount;

@@ -13,9 +13,10 @@ public class Stapler
     private int staples;
     private boolean jammed;
     final int CHANCEOFJAM;
-    
+
     /**
      * Overloaded Constructor for an empty stapler
+     * @param jamChance the chance of jamming each time it staples
      */
     public Stapler(int jamChance)
     {
@@ -27,6 +28,7 @@ public class Stapler
     /**
      * Overloaded Constructor for a stapler with a custom number of staples
      * @param initStaples the amount of staples initially loaded into the stapler
+     * @param jamChance the chance of jamming each time it staples
      */
     public Stapler(int initStaples, int jamChance)
     {

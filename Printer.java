@@ -23,29 +23,35 @@ public class Printer {
      * @param pages the number of pages being printed
      * @param doubleSided whether or not the print job should be double sided
      */
-    public void print(int pages, boolean doubleSided) {
-        if (inkLevel <= 0) {
-            System.out.println("Cannot print: Ink is empty.");
-        } else if (paperCount <= 0) {
-            System.out.println("Cannot print: Out of paper.");
-        } else if ((stapleCount <= 0&&pages>1&&!doubleSided)||(stapleCount <= 0&&pages>2&&doubleSided)) {
-            System.out.println("Cannot print: No staples left.");
-        } else {
-            inkLevel -= pages*5;
-            if (doubleSided)
+    public String print(int pages, boolean doubleSided) {
+        int pagesRemaining = pages;
+        while(paperCount>0&&inkLevel>=5&&pagesRemaining>0)
+        {
+            
+            if (doubleSided&&pagesRemaining>=2)
             {
-                paperCount-=(int) pages/2 + pages%2;
+                paperCount --;
+                inkLevel -= 10;
             }
-            else
-            {
-                paperCount -= pages;
+            else{
+                paperCount --;
+                inkLevel -=5;
             }
-            if ((pages>1&&!doubleSided)||(pages>2&&doubleSided))
-            {
-                stapleCount--;
-            }
-            System.out.println("Printing... Done!");
+            
         }
+
+        if (inkLevel < 5) {
+                return("Cannot print: Out of ink. Printed "+ (pages-pagesRemaining) +" pages.");
+            } else if (paperCount < 1) {
+                return("Cannot print: Out of paper. Printed "+ (pages-pagesRemaining) +" pages.");
+            }
+
+        if ((pages>1&&!doubleSided)||(pages>2&&doubleSided))
+        {
+            stapleCount--;
+        }
+        return("Printing... Done!");
+        
     }
 
     /**

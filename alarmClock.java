@@ -117,14 +117,29 @@ public class alarmClock {
             stopwatchSeconds = 0;
         }
     }
+    /**
+     * startStopwatch() sets the start time to begin the stopwatch, which runs in the background
+     */
     public void startStopwatch()
     {
         startTime = System.currentTimeMillis();
     }
 
+    /**
+     * stopStopwatch() sets the stopwatch seconds based on time that has passed since the start time
+     */
     public void stopStopwatch()
     {
-        stopwatchSeconds= (int) getMillisPassed()/1000;
+        stopwatchSeconds= Math.round( getMillisPassed()/1000);
+    }
+
+    /**
+     * getStopwatch() returns the time passed on the stopwatch
+     * @return the amount of time passed since either the start of the program (if startStopwatch() wasn't run) or the time since startStopwatch was run
+     */
+    public int getStopwatch()
+    {
+        return stopwatchSeconds;
     }
 
     /**

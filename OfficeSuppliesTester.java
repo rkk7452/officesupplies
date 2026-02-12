@@ -105,9 +105,11 @@ public class OfficeSuppliesTester {
         
         // TESTING Alarm Clock
         System.out.println("\n=== TESTING Alarm Clock ===");
-        alarmClock myAlarm = new alarmClock();
-        int maxClock = 4;//number of tests
+        int maxClock = 6;//number of tests
         int clockPts = 0;
+        System.out.println("constructing new alarm clock...");
+        alarmClock myAlarm = new alarmClock();
+        clockPts++;
 
             //testing the setTime()
             System.out.println("Setting the time to 3:32 pm...");
@@ -128,17 +130,26 @@ public class OfficeSuppliesTester {
             System.out.println("Alarm Clock Info:");
             System.out.println(myAlarm);
 
+            //stopwatch initialize
+            System.out.println("Starting the stopwatch...will come back to it later...");
+            myAlarm.startStopwatch();
+
             // Battery test
+            System.out.println("Trying to drain battery...");
             myAlarm.drainBattery();
             if (myAlarm.isBatteryDead()) {
                 System.out.println("Battery drain PASSED");
+                clockPts++;
             } else {
                 System.out.println("Battery drain FAILED");
             }
 
+
+            System.out.println("Trying to replace the battery...");
             myAlarm.replaceBattery();
             if (!myAlarm.isBatteryDead()) {
                 System.out.println("Battery replace PASSED");
+                clockPts++;
             } else {
                 System.out.println("Battery replace FAILED");
             }
@@ -146,22 +157,73 @@ public class OfficeSuppliesTester {
             System.out.println("Testing 5 sec timer...");
             System.out.println(myAlarm.runTimer(5));
 
+            myAlarm.stopStopwatch();
+            if (myAlarm.getStopwatch()==5||myAlarm.getStopwatch()==6)
+            {
+                System.out.println("Passed. The stopwatch recorded "+myAlarm.getStopwatch()+" seconds.");
+                clockPts+=2;
+            }
+            System.out.println("The alarm clock passed "+clockPts+"/"+maxClock+" tests.");
+
         // TESTING PRINTER
         System.out.println("\n=== TESTING PRINTER ===");
+        int maxPrinter = 4;
+        int printerPts = 0;
+        System.out.println("Constructing new printer...");
         Printer printer = new Printer();
 
+            System.out.println("Testing the initial setup levels...");
             System.out.println("Initial Ink: " + printer.getInk());
             System.out.println("Initial Paper: " + printer.getPaper());
             System.out.println("Initial Staples: " + printer.getStaples());
 
+            if (printer.getInk()==100)
+            {
+                System.out.println("Passed Ink levels test");
+                printerPts++;
+            }
+            if (printer.getPaper()==50)
+            {
+                System.out.println("Passed paper levels test");
+                printerPts++;
+            }
+            if (printer.getStaples()==20)
+            {
+                System.out.println("Passed staple levels test");
+                printerPts++;
+            }
+
             // Test single-sided print
-            printer.print(5, false);
+            System.out.println("Testing single-sided printing...");
+            System.out.println(printer.print(5, false));
             System.out.println("After printing 5 pages:");
-            System.out.println("Ink: " + printer.getInk());
-            System.out.println("Paper: " + printer.getPaper());
-            System.out.println("Staples: " + printer.getStaples());
+            if (printer.getInk()==75)
+            {
+                System.out.println("Passed Ink levels test");
+                printerPts++;
+            }
+            else{
+                System.out.println("Failed Ink Levels test.");
+            }
+            if (printer.getPaper()==45)
+            {
+                System.out.println("Passed paper levels test");
+                printerPts++;
+            }
+            else{
+                System.out.println("Failed paper Levels test.");
+            }
+            if (printer.getStaples()==20)
+            {
+                System.out.println("Passed staple levels test");
+                printerPts++;
+            }
+            else{
+                System.out.println("Failed staple Levels test.");
+            }
 
             // Test double-sided print
+            System.out.println("Testing single-sided printing...");
             printer.print(4, true);
             System.out.println("After printing 4 double-sided pages:");
             System.out.println("Ink: " + printer.getInk());

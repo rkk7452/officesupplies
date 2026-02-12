@@ -25,28 +25,30 @@ public class Printer {
      */
     public String print(int pages, boolean doubleSided) {
         int pagesRemaining = pages;
-        while(paperCount>0&&inkLevel>=5&&pagesRemaining>0)
+        while(paperCount>0&&inkLevel>=2&&pagesRemaining>0)
         {
             
-            if (doubleSided&&pagesRemaining>=2)
+            if (doubleSided&&pagesRemaining>=2&&inkLevel>=4)
             {
                 paperCount --;
-                inkLevel -= 10;
+                inkLevel -= 4;
+                pagesRemaining-=2;
             }
             else{
                 paperCount --;
-                inkLevel -=5;
+                inkLevel -=2;
+                pagesRemaining--;
             }
             
         }
 
-        if (inkLevel < 5) {
-                return("Cannot print: Out of ink. Printed "+ (pages-pagesRemaining) +" pages.");
-            } else if (paperCount < 1) {
-                return("Cannot print: Out of paper. Printed "+ (pages-pagesRemaining) +" pages.");
-            }
+        if (inkLevel < 5&&pagesRemaining>0) {
+            return("Print Paused: Out of ink. Printed "+ (pages-pagesRemaining) +" pages.");
+        } else if (paperCount < 1&&pagesRemaining>0) {
+            return("Print Paused: Out of paper. Printed "+ (pages-pagesRemaining) +" pages.");
+        }
 
-        if ((pages>1&&!doubleSided)||(pages>2&&doubleSided))
+        if ((pages>1&&!doubleSided)||(pages>2&&doubleSided)&&stapleCount>0)
         {
             stapleCount--;
         }

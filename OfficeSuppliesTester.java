@@ -167,7 +167,7 @@ public class OfficeSuppliesTester {
 
         // TESTING PRINTER
         System.out.println("\n=== TESTING PRINTER ===");
-        int maxPrinter = 4;
+        int maxPrinter = 14;
         int printerPts = 0;
         System.out.println("Constructing new printer...");
         Printer printer = new Printer();
@@ -194,16 +194,16 @@ public class OfficeSuppliesTester {
             }
 
             // Test single-sided print
-            System.out.println("Testing single-sided printing...");
+            System.out.println("\nTesting single-sided printing...");
             System.out.println(printer.print(5, false));
             System.out.println("After printing 5 pages:");
-            if (printer.getInk()==75)
+            if (printer.getInk()==90)
             {
                 System.out.println("Passed Ink levels test");
                 printerPts++;
             }
             else{
-                System.out.println("Failed Ink Levels test.");
+                System.out.println("Failed Ink Levels test. Expected 75, actual: "+printer.getInk());
             }
             if (printer.getPaper()==45)
             {
@@ -211,37 +211,95 @@ public class OfficeSuppliesTester {
                 printerPts++;
             }
             else{
-                System.out.println("Failed paper Levels test.");
+                System.out.println("Failed paper Levels test. Expected 45, actual: "+printer.getPaper());
             }
-            if (printer.getStaples()==20)
+            if (printer.getStaples()==19)
             {
                 System.out.println("Passed staple levels test");
                 printerPts++;
             }
             else{
-                System.out.println("Failed staple Levels test.");
+                System.out.println("Failed staple Levels test. Expected 19, actual: "+printer.getStaples());
+            }
+            
+            //Test refill
+            System.out.println("\nTesting refills");
+            printer.refillInk();
+            if (printer.getInk()==100){
+                System.out.println("Ink...Passed");
+                printerPts++;
+            }
+            else{
+                System.out.println("Ink...failed");
+            }
+            printer.refillPaper();
+            if (printer.getPaper()==50){
+                System.out.println("Paper...Passed");
+                printerPts++;
+            }
+            else{
+                System.out.println("Paper...failed");
+            }
+            printer.refillStaples();
+            if (printer.getStaples()==20){
+                System.out.println("Staples...Passed");
+                printerPts++;
+            }
+            else{
+                System.out.println("Staples...failed");
             }
 
             // Test double-sided print
-            System.out.println("Testing single-sided printing...");
-            printer.print(4, true);
-            System.out.println("After printing 4 double-sided pages:");
-            System.out.println("Ink: " + printer.getInk());
-            System.out.println("Paper: " + printer.getPaper());
-            System.out.println("Staples: " + printer.getStaples());
+            System.out.println("\nTesting double-sided printing by attempting to print 5 pages...");
+            printer.print(5, true);
+            if (printer.getInk()==90){
+                System.out.println("Ink level...Passed");
+                printerPts++;
+            }
+            else{
+                System.out.println("Ink level...failed");
+            }
 
-            // Drain supplies
-            printer.print(50, false);
+            if (printer.getPaper()==47){
+                System.out.println("Paper level...Passed");
+                printerPts++;
+            }
+            else{
+                System.out.println("Paper level...failed");
+            }
 
-            // Refill tests
+            if (printer.getStaples()==19){
+                System.out.println("Staple level...Passed");
+                printerPts++;
+            }
+            else{
+                System.out.println("Staple level...failed");
+            }
+
+            // Drain paper
+            System.out.println("\nDraining paper supplies...");
+            System.out.println(printer.print(50, false));
+            if (printer.getInk()==0&&printer.getPaper()>0)
+            {
+                System.out.println("Passed.");
+                printerPts++;
+            }
+            else{
+                System.out.println("Failed. Expected 0 ink, 4 paper. Actual: "+printer.getInk()+" ink, "+printer.getPaper()+" paper.");
+            }
             printer.refillInk();
+            System.out.println(printer.print(50, false));
+            if (printer.getInk()>0&&printer.getPaper()==0)
+            {
+                System.out.println("Passed.");
+                printerPts++;
+            }
+            else{
+                System.out.println("Failed. Expected 84 ink, 0 paper. Actual: "+printer.getInk()+" ink, "+printer.getPaper()+" paper.");
+            }
             printer.refillPaper();
-            printer.refillStaples();
 
-            System.out.println("After refilling:");
-            System.out.println("Ink: " + printer.getInk());
-            System.out.println("Paper: " + printer.getPaper());
-            System.out.println("Staples: " + printer.getStaples());
+            System.out.println("The printer passed "+printerPts+"/"+maxPrinter+" tests.");
     }
 
     }

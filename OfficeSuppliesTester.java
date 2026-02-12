@@ -2,13 +2,15 @@
 public class OfficeSuppliesTester {
     public static void main (String[] args)
     {
-        //Testing the Stapler
         
         // TESTING Stapler
+
+        int maxStapler = 4;
+        int staplerPts = 0;
         System.out.println("=== TESTING Stapler ===");
             //test the stapler class with a bad stapler
             System.out.println("Constructing a bad Stapler with a 1 in 2 chance of jamming.");
-            Stapler badStapler = new Stapler(50, 2);
+            Stapler badStapler = new Stapler(999999999, 2);
             System.out.println("Stapling until it jams...");
             int numStapled = 0;
             while(!badStapler.getJammed())
@@ -19,18 +21,28 @@ public class OfficeSuppliesTester {
             if (badStapler.getJammed())
             {
                 System.out.println("It was able to staple "+numStapled+" time(s) before jamming.");
+                staplerPts++;
             }
             else{
-                System.out.println("It was able to staple "+numStapled+" time(s) before running out of staples.");
+                System.out.println("It didn't jam...Fail?...or you should enter the lottery...rerun to check.It was able to staple "+numStapled+" time(s).");
+                if (badStapler.getStaples()==0)
+                {
+                    System.out.println("0 staples left...");
+                }
+                else{
+                    System.out.println("Unkown error. >0 staples and not jammed. Check tester code.");
+                }
             }
             
+
             System.out.println("Attempting to staple with a jammed stapler...");
             int staplesRemaining = badStapler.getStaples();
+            badStapler.jam();
             badStapler.staple();
             if (badStapler.getStaples()==staplesRemaining)
             {
                 System.out.println("Passed. Didn't staple when jammed.");
-
+                staplerPts++;
             }
             else
             {
@@ -40,8 +52,8 @@ public class OfficeSuppliesTester {
             System.out.println();
 
             //test the Stapler class with a good stapler!
-            System.out.println("Constructing a good Stapler with a 1 in 100 chance of jamming.");
-            Stapler goodStapler = new Stapler(150, 100);
+            System.out.println("Constructing a good Stapler with a 1 in 1000 chance of jamming.");
+            Stapler goodStapler = new Stapler(999999999, 1000);
             System.out.println("Stapling until it jams...");
             numStapled = 0;
             while(!goodStapler.getJammed()&&goodStapler.getStaples()>0)
@@ -52,26 +64,50 @@ public class OfficeSuppliesTester {
             if (goodStapler.getJammed())
             {
                 System.out.println("It was able to staple "+numStapled+" time(s) before jamming.");
+                staplerPts++;
             }
             else{
-                System.out.println("It was able to staple "+numStapled+" time(s) before running out of staples.");
+                System.out.println("It didn't jam...Fail?...or you should enter the lottery...rerun to check.It was able to staple "+numStapled+" time(s).");
+                if (badStapler.getStaples()==0)
+                {
+                    System.out.println("0 staples left...");
+                }
+                else{
+                    System.out.println("Unkown error. >0 staples and not jammed. Check tester code.");
+                }   
             }
             
             System.out.println();
 
             //test Stapler class refill method
-            System.out.println("Testing a small Stapler to run out of staples");
-            Stapler smallStapler = new Stapler(5,1000);
+            System.out.println("Testing a small Stapler (5 staples) to run out of staples");
+            Stapler smallStapler = new Stapler(5,999999999);
             while(smallStapler.getStaples()>0)
             {
                 smallStapler.staple();
             }
-            System.out.println("Small stapler's staples remaining: "+smallStapler.getStaples());
-            
+            if (smallStapler.getStaples()==0)
+            {
+                System.out.println("Passed.");
+                staplerPts++;
+            }
+            else{
+                if (smallStapler.getJammed())
+                {
+                    System.out.println("It jammed...Fail?...or you should enter the lottery...rerun to check.");
+                }
+                else{
+                    System.out.println("Failed to use up all the staples.");
+                }
+            }
+
+        System.out.println("Passed "+maxStapler+"/"+staplerPts+" tests.");
         
         // TESTING Alarm Clock
         System.out.println("\n=== TESTING Alarm Clock ===");
         alarmClock myAlarm = new alarmClock();
+        int maxClock = 4;//number of tests
+        int clockPts = 0;
 
             //testing the setTime()
             System.out.println("Setting the time to 3:32 pm...");
@@ -79,6 +115,7 @@ public class OfficeSuppliesTester {
             if (myAlarm.getTime()==55920)
             {
                 System.out.println("Passed.");
+                clockPts++;
             }
             else{
                 System.out.println("Setting time failed.");

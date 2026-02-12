@@ -4,6 +4,7 @@ AlarmClock class
 @author Conner Wang
 @version 2026.2.4
 
+Our stopwatch ended up being our most complex class
 */
 
 
@@ -72,7 +73,19 @@ public class alarmClock {
      */
     public String runTimer(int seconds)
     {
-        Threat.sleep(seconds*1000);
+        try
+        {
+            for (int i = 0; i <seconds; i++)
+            {
+                Thread.sleep(1000);
+                System.out.print(i+1+".");
+            }
+        }
+        catch (InterruptedException ex)
+        {
+
+        }
+        System.out.println();
         return ("Timer is over");
     }
     
@@ -89,12 +102,29 @@ public class alarmClock {
     }
 
     /**
+     * getAlarm() verifies the current alarm setting
+     * @return the alarm time in minutes since midnight
+     */
+    public int getAlarm()
+    {
+        return (alarmHours*60+alarmMinutes);
+    }
+    /**
      * setStopWatch() resets the stopwatch to 0
      */
     public void setStopWatch() {
         if (!batteryDead) {
             stopwatchSeconds = 0;
         }
+    }
+    public void startStopwatch()
+    {
+        startTime = System.currentTimeMillis();
+    }
+
+    public void stopStopwatch()
+    {
+        stopwatchSeconds= (int) getMillisPassed()/1000;
     }
 
     /**

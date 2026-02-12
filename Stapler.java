@@ -4,7 +4,7 @@ Stapler class
 @author Conner Wang
 @version 2026.2.4
 
-
+our stapler was our easy class
 */
 
 public class Stapler
@@ -56,6 +56,13 @@ public class Stapler
         return jammed;
     }
 
+    /**
+     * jam() sets the stapler to jammed.
+     */
+    public void jam()
+    {
+        jammed = true;
+    }
     /**
      * The staple() method uses up one of the staples if there is at least one staple available
      */

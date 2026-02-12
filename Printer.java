@@ -3,6 +3,8 @@ Printer class
 @author Ryan Kim
 @author Conner Wang
 @version 2026.2.9
+
+our printer ended up being our medium complexity class
 */
 public class Printer {
 
